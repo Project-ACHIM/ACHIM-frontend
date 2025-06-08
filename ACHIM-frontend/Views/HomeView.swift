@@ -10,33 +10,17 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var viewModel = StepCounterViewModel()
     var body: some View {
-        ZStack{
-            Image(.numberBackground)
-            HStack{
-                VStack(alignment: .leading) {
-                    Text("今日の歩数は")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.black)
-                    
-                    HStack(alignment: .firstTextBaseline, spacing: 0) {
-                        Text("\(viewModel.stepCount.formatted())")
-                            .font(.system(size: 32, weight: .bold))
-                            .foregroundColor(Color.blue)
-                        
-                        Text("歩")
-                            .font(.system( size: 22, weight: .bold))
-                            .foregroundColor(.black)
-                        
-                        Text("です！")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.black)
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                Image(.character)
-            }.padding(19)
+        
+        VStack {
+            Text("朝活終了")
+                .frame(width: 350, height: 80)
+                .background(
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(Color.white)
+                        .shadow(color: Color("5D9FED").opacity(0.7), radius: 4, x: 0, y: 0)
+                )
+            StepCountCardView(stepCount: viewModel.stepCount)
         }
-        .frame(maxWidth: 350, maxHeight: 180)
         .onAppear {
             viewModel.fetchTodaySteps()
         }
