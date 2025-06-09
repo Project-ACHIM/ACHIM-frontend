@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var viewModel = StepCounterViewModel()
     var body: some View {
-        
         VStack {
             Text("朝活終了")
                 .frame(width: 350, height: 80)
