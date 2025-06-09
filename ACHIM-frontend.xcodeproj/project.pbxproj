@@ -29,9 +29,22 @@
 		15BBCF682DED7F290099CEF2 /* ACHIM-frontendUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ACHIM-frontendUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		152286872DF69E33000B7957 /* Exceptions for "ACHIM-frontend" folder in "ACHIM-frontend" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 15BBCF502DED7F260099CEF2 /* ACHIM-frontend */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		15BBCF532DED7F260099CEF2 /* ACHIM-frontend */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				152286872DF69E33000B7957 /* Exceptions for "ACHIM-frontend" folder in "ACHIM-frontend" target */,
+			);
 			path = "ACHIM-frontend";
 			sourceTree = "<group>";
 		};
