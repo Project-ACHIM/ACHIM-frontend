@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StepCountCardView: View {
     let stepCount: Int
-    
+
     var body: some View {
         ZStack {
             Image(.numberBackground)
