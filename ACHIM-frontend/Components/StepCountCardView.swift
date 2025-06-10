@@ -16,21 +16,18 @@ struct StepCountCardView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text("今日の歩数は")
-                        .font(.system(size: 14, weight: .bold))
-//                        .foregroundColor(.defaultBlack)
+                        .zenFont(.medium, size: 14)
                     
                     HStack(alignment: .firstTextBaseline, spacing: 0) {
                         Text("\(stepCount.formatted())")
-                            .font(.system(size: 32, weight: .bold))
-                            .foregroundColor(Color.blue)
+                            .zenFont(.bold, size: 32, color: .navy)
+//                            .foregroundColor(Color.blue)
                         
                         Text("歩")
-                            .font(.system(size: 22, weight: .bold))
-//                            .foregroundColor(.defaultBlack)
+                            .zenFont(.bold, size: 22, color: .navy)
                         
                         Text("です！")
-                            .font(.system(size: 16, weight: .bold))
-//                            .foregroundColor(.defaultBlack)
+                            .zenFont(.bold, size: 16)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -40,7 +37,6 @@ struct StepCountCardView: View {
             .padding(19)
         }
         .frame(maxWidth: 350, maxHeight: 180)
-        .foregroundColor(.defaultBlack)
         
     }
 }
