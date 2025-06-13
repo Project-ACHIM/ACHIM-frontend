@@ -10,10 +10,10 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var viewModel = StepCounterViewModel()
     var body: some View {
-        
         VStack{
             CountdownCardView()
             StepCountCardView(stepCount: viewModel.stepCount)
+            CountPointCardView()
         }
         .onAppear {
             viewModel.fetchTodaySteps()
