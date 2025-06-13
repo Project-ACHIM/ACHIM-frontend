@@ -13,6 +13,7 @@ struct HomeView: View {
         VStack{
             CountdownCardView()
             StepCountCardView(stepCount: viewModel.stepCount)
+            CountPointCardView()
         }
         .onAppear {
             viewModel.fetchTodaySteps()
