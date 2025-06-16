@@ -11,13 +11,25 @@ struct HomeView: View {
     @StateObject var viewModel = StepCounterViewModel()
     var body: some View {
         VStack{
-            CountdownCardView()
-            StepCountCardView(stepCount: viewModel.stepCount)
-            CountPointCardView()
-            UserStatusCardView()
-            ActivityButtonView()
-//            buttomの使い方：文字変更は下の通り
-//            ActivityButtonView(label: "写真投稿")
+            VStack {
+                Color.white.ignoresSafeArea()
+                PointHeaderView()
+                    .padding(.bottom , 14)
+                CountdownCardView()
+                    .padding(.bottom , 17)
+                StepCountCardView(stepCount: viewModel.stepCount)
+                    .padding(.bottom , 17)
+                CountPointCardView()
+                    .padding(.bottom , 17)
+                UserStatusCardView()
+                    .padding(.bottom , 35)
+                ActivityButtonView()
+            }
+            // ✅ ZStack内に配置することが重要！
+            Rectangle()
+                .fill(Color.black)
+                .frame(height: 95)
+                .ignoresSafeArea(.all, edges: .bottom)
         }
         .onAppear {
             viewModel.fetchTodaySteps()
