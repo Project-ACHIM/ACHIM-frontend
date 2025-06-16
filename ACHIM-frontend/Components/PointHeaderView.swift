@@ -12,50 +12,61 @@ struct PointHeaderView: View {
         ZStack {
             Color("hex6CB0FF")
             
-            HStack(spacing: 16) {
+            HStack(alignment: .center, spacing: 16) {
                 // SPブロック
-                HStack(alignment: .bottom , spacing: 4) {
+                HStack(alignment: .center, spacing: 4) {
                     Image(.sp)
                         .resizable()
-                        .frame(width: 24, height: 24)
+                        .frame(width: 30, height: 30)
+                        .offset(y: +2)
                     Text("100,000")
-                        .zenFont(.regular, size: 18, color: .white)
+                        .zenFont(.bold, size: 28, color: .white)
                 }
+                
+                Spacer()
+                    .frame(width: 6)
                 
                 // 縦線
                 Rectangle()
                     .fill(Color.white)
-                    .frame(width: 1, height: 24)
+                    .frame(width: 1, height: 40)
+                
+                Spacer()
+                    .frame(width: 6)
                 
                 // BPブロック
-                HStack(alignment: .bottom , spacing: 4) {
+                HStack(alignment: .center , spacing: 4) {
                     Image(.bp)
                         .resizable()
-                        .frame(width: 20, height: 20)
+                        .frame(width: 30, height: 30)
+                        .offset(y: +2)
                     Text("100,000")
-                        .zenFont(.regular, size: 18, color: .white)
+                        .zenFont(.bold, size: 28, color: .white)
                 }
             }
             .frame(maxWidth: .infinity)
-            .padding(.horizontal, 48)
-            .frame(height: 40)
-            
+            .frame(height: 60)
+
             // 右端の ? ボタン
-            HStack {
+            VStack {
                 Spacer()
-                Button(action: {
-                    // アクション
-                }) {
-                    Image(systemName: "questionmark")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.white)
-                        .frame(width: 24, height: 24)
-                        .background(Circle().stroke(Color.white, lineWidth: 1))
+                HStack {
+                    Spacer()
+                    Button(action: {
+                       
+                    }) {
+                        Image(systemName: "questionmark")
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundColor(.white)
+                            .frame(width: 18, height: 18)
+                            .background(Circle().stroke(Color.white, lineWidth: 1))
+                    }
+                    .padding(.trailing, 8)
+                    .padding(.bottom, 4)
                 }
-                .padding(.trailing, 16)
             }
         }
-        .frame(height: 40)
+        .frame(height: 60)
     }
 }
 
