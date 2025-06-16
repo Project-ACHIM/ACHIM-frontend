@@ -12,30 +12,39 @@ struct PointHeaderView: View {
         ZStack {
             Color("hex6CB0FF")
             
-            HStack {
-                // 左側の SP
-                Text("SP")
-                    .zenFont(.medium, size: 14, color: .white)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+            HStack(spacing: 16) {
+                // SPブロック
+                HStack(alignment: .bottom , spacing: 4) {
+                    Image(.sp)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                    Text("100,000")
+                        .zenFont(.regular, size: 18, color: .white)
+                }
                 
-                // 中央の縦線
+                // 縦線
                 Rectangle()
                     .fill(Color.white)
                     .frame(width: 1, height: 24)
                 
-                // 右側の BP
-                Text("BP")
-                    .zenFont(.medium, size: 14, color: .white)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                // BPブロック
+                HStack(alignment: .bottom , spacing: 4) {
+                    Image(.bp)
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                    Text("100,000")
+                        .zenFont(.regular, size: 18, color: .white)
+                }
             }
-            .padding(.horizontal, 48) // 両端の余白調整
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 48)
+            .frame(height: 40)
             
-            // 右端の？ボタン
+            // 右端の ? ボタン
             HStack {
                 Spacer()
-                
                 Button(action: {
-                    // ヘルプアクション
+                    // アクション
                 }) {
                     Image(systemName: "questionmark")
                         .font(.system(size: 12, weight: .medium))
