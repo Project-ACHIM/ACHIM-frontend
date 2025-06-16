@@ -9,6 +9,7 @@ import SwiftUI
 struct nav_bar: View {
     var body: some View {
         ZStack {
+            Color.navy.ignoresSafeArea()
             Rectangle()
                 .fill(Color.navy)
                 .frame(width: 450, height: 95)

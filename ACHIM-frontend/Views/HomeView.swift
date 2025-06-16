@@ -12,7 +12,6 @@ struct HomeView: View {
     var body: some View {
         VStack{
             VStack {
-                Color.white.ignoresSafeArea()
                 PointHeaderView()
                     .padding(.bottom , 14)
                 CountdownCardView()
@@ -24,12 +23,13 @@ struct HomeView: View {
                 UserStatusCardView()
                     .padding(.bottom , 35)
                 ActivityButtonView()
+                    .padding(.bottom , 25)
+                
+                Spacer()
+                
+                nav_bar()
+                    .ignoresSafeArea(.all, edges: .bottom)
             }
-            // ✅ ZStack内に配置することが重要！
-            Rectangle()
-                .fill(Color.black)
-                .frame(height: 95)
-                .ignoresSafeArea(.all, edges: .bottom)
         }
         .onAppear {
             viewModel.fetchTodaySteps()
