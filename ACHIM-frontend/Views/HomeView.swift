@@ -9,11 +9,17 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel = StepCounterViewModel()
+    
     var body: some View {
-        VStack{
-            VStack {
-                PointHeaderView()
+        ZStack(alignment: .top) {
+            Color.white.ignoresSafeArea()
+            
+            // 下のメイン内容
+            VStack(spacing: 0) {
+                Spacer()
+                    .frame(height: 60) // ← 上のPointHeaderViewの高さ分下げる
                     .padding(.bottom , 14)
+                
                 CountdownCardView()
                     .padding(.bottom , 17)
                 StepCountCardView(stepCount: viewModel.stepCount)
@@ -23,13 +29,15 @@ struct HomeView: View {
                 UserStatusCardView()
                     .padding(.bottom , 35)
                 ActivityButtonView()
-                    .padding(.bottom , 25)
-                
-                Spacer()
+                    .padding(.bottom , 35)
                 
                 nav_bar()
-                    .ignoresSafeArea(.all, edges: .bottom)
             }
+            
+            // 最上部に常に固定されるPointHeaderView
+            PointHeaderView()
+                .frame(height: 60)
+                .zIndex(1)
         }
         .onAppear {
             viewModel.fetchTodaySteps()
