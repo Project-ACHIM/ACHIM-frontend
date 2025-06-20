@@ -9,9 +9,11 @@ import SwiftUI
 struct nav_bar: View {
     var body: some View {
         ZStack {
+            Color.navy.ignoresSafeArea()
+
             Rectangle()
                 .fill(Color.navy)
-                .frame(width: 450, height: 95)
+                .frame(width: .infinity, height: 95)
             HStack(alignment: .center, spacing: 35) {
                 //ギフト画面
                 Button(action: {
@@ -28,6 +30,7 @@ struct nav_bar: View {
                 //ホーム画面
                 Button(action: {
 //                    HomeView()
+
                 }) {
                     Image(.house)
                 }
