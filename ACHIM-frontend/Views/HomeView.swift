@@ -36,9 +36,11 @@ struct HomeView: View {
             
             // 最上部に常に固定されるPointHeaderView
             PointHeaderView()
-                .frame(height: 60)
-                .zIndex(1)
+                .frame(maxWidth:.infinity, maxHeight: 60)
+                .zIndex(10)
+
         }
+        .frame(maxWidth: .infinity)
         .onAppear {
             viewModel.fetchTodaySteps()
         }

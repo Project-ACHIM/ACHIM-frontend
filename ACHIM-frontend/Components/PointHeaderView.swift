@@ -46,14 +46,16 @@ struct PointHeaderView: View {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 60)
-
-            // 右端の ? ボタン
-            VStack {
+        }
+        .frame(maxWidth: .infinity, maxHeight: 60)
+        .overlay(
+            // ← ここで上から重ねるように表示する
+            HStack {
                 Spacer()
-                HStack {
+                VStack {
                     Spacer()
                     Button(action: {
-                       
+                        // Action
                     }) {
                         Image(systemName: "questionmark")
                             .font(.system(size: 12, weight: .medium))
@@ -65,8 +67,7 @@ struct PointHeaderView: View {
                     .padding(.bottom, 4)
                 }
             }
-        }
-        .frame(height: 60)
+        )
     }
 }
 
