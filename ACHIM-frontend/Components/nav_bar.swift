@@ -12,7 +12,7 @@ struct nav_bar: View {
             Color.navy.ignoresSafeArea()
             Rectangle()
                 .fill(Color.navy)
-                .frame(width: .infinity, height: 95)
+                .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
             HStack(alignment: .center, spacing: 35) {
                 //ギフト画面
                 Button(action: {
