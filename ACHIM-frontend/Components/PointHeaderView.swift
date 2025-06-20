@@ -12,41 +12,61 @@ struct PointHeaderView: View {
         ZStack {
             Color("hex6CB0FF")
             
-            HStack {
-                // 左側の SP
-                Text("SP")
-                    .zenFont(.medium, size: 14, color: .white)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+            HStack(alignment: .center, spacing: 16) {
+                // SPブロック
+                HStack(alignment: .center, spacing: 4) {
+                    Image(.sp)
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .offset(y: +2)
+                    Text("100,000")
+                        .zenFont(.bold, size: 28, color: .white)
+                }
                 
-                // 中央の縦線
+                Spacer()
+                    .frame(width: 6)
+                
+                // 縦線
                 Rectangle()
                     .fill(Color.white)
-                    .frame(width: 1, height: 24)
+                    .frame(width: 1, height: 40)
                 
-                // 右側の BP
-                Text("BP")
-                    .zenFont(.medium, size: 14, color: .white)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .padding(.horizontal, 48) // 両端の余白調整
-            
-            // 右端の？ボタン
-            HStack {
                 Spacer()
+                    .frame(width: 6)
                 
-                Button(action: {
-                    // ヘルプアクション
-                }) {
-                    Image(systemName: "questionmark")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.white)
-                        .frame(width: 24, height: 24)
-                        .background(Circle().stroke(Color.white, lineWidth: 1))
+                // BPブロック
+                HStack(alignment: .center , spacing: 4) {
+                    Image(.bp)
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .offset(y: +2)
+                    Text("100,000")
+                        .zenFont(.bold, size: 28, color: .white)
                 }
-                .padding(.trailing, 16)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+
+            // 右端の ? ボタン
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                       
+                    }) {
+                        Image(systemName: "questionmark")
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundColor(.white)
+                            .frame(width: 18, height: 18)
+                            .background(Circle().stroke(Color.white, lineWidth: 1))
+                    }
+                    .padding(.trailing, 8)
+                    .padding(.bottom, 4)
+                }
             }
         }
-        .frame(height: 40)
+        .frame(height: 60)
     }
 }
 
