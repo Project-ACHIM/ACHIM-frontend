@@ -30,8 +30,6 @@ struct HomeView: View {
                     .padding(.bottom , 35)
                 ActivityButtonView()
                     .padding(.bottom , 35)
-                
-//                nav_bar()
             }
             
             // 最上部に常に固定されるPointHeaderView

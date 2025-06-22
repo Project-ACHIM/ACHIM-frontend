@@ -26,9 +26,9 @@ struct RankingCards: View {
                 HStack(alignment: .firstTextBaseline, spacing: 4){
                     //順位数字
                     Text("\(rank)")
-                        .zenFont(.bold, size: 40)
+                        .zenFont(.bold, size: 40, color:Color.hex347CD1)
                     Text("位")
-                        .zenFont(.bold, size: 24)
+                        .zenFont(.bold, size: 24, color:Color.hex347CD1)
                 }
                 .frame(width: 50, height: 80)
                 //プロフィール画像
@@ -39,7 +39,7 @@ struct RankingCards: View {
                 // 名前・SP
                 VStack(alignment: .trailing, spacing: 8){
                     Text(userName)
-                        .zenFont(.medium, size: 16)
+                        .zenFont(.medium, size: 16, color:Color.defaultBlack)
                     // SP
                     HStack{
                         Image(.sp)  //SP img
@@ -49,9 +49,9 @@ struct RankingCards: View {
                         //SP text
                         HStack(alignment: .center, spacing : 4){
                             Text("\(sp)")
-                                .zenFont(.bold, size: 20)
+                                .zenFont(.bold, size: 20, color:Color.defaultBlack)
                             Text("pt")
-                                .zenFont(.bold, size: 14)
+                                .zenFont(.bold, size: 14, color:Color.defaultBlack)
                         }
                     }
                 }
