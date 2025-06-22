@@ -9,6 +9,7 @@ import SwiftUI
 public struct RankingHalfsheet: View {
     @State private var showModalSheet = false
     public var body: some View {
+        // 履歴ボタン
         Button("履歴") {
                     showModalSheet = true
                 }
@@ -19,6 +20,7 @@ public struct RankingHalfsheet: View {
                 .sheet(isPresented: $showModalSheet) {
                     VStack {
                         ZStack{
+                            // ハーフシート　ヘッダー背景
                             Path { path in
                                         path.move(to: CGPoint(x: 0, y: 0))        // 始点移動
                                 path.addLine(to: CGPoint(x: 450, y: 0))   // 直線描画
@@ -27,6 +29,7 @@ public struct RankingHalfsheet: View {
                                     }
                             .fill(Color.hex6CB0FF)    // 塗りつぶし色指定
                             
+                            // ヘッダータイトル
                             VStack {
                                 Text("ランキング履歴")
                                     .zenFont(.bold, size:20, color: Color.white)

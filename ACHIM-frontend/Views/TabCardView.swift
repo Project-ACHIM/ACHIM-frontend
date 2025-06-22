@@ -9,7 +9,7 @@ import SwiftUI
 struct TabCardView: View {
     @State private var selectedIndex = 0
 
-    let tabIcons = ["crown", "gift", "house", "heart.text.clipboard.fill", "person.circle"]
+    let tabIcons = ["crown", "gift", "house", "heart.text.clipboard", "person.circle"]
 
     var body: some View {
         VStack(spacing: 0) {
