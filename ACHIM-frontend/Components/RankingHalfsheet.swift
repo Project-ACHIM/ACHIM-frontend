@@ -17,11 +17,25 @@ public struct RankingHalfsheet: View {
                 .background(Color.baseSky)
                 .cornerRadius(5)
                 .sheet(isPresented: $showModalSheet) {
-                    ZStack {
-                        Text("ハーフモーダル")
+                    VStack {
+                        ZStack{
+                            Path { path in
+                                        path.move(to: CGPoint(x: 0, y: 0))        // 始点移動
+                                path.addLine(to: CGPoint(x: 450, y: 0))   // 直線描画
+                                path.addLine(to: CGPoint(x: 450, y: 50))
+                                        path.addLine(to: CGPoint(x: 0, y: 50))
+                                    }
+                            .fill(Color.hex6CB0FF)    // 塗りつぶし色指定
+                            
+                            VStack {
+                                Text("ランキング履歴")
+                                    .zenFont(.bold, size:20, color: Color.white)
+                                    .padding(.top, 10)
+                                Spacer()
+                            }
+                        }
                     }
-                    .presentationDetents([.large, .height(600), .fraction(0.5)])
-                    .cornerRadius(100)
+                    .presentationDetents([.height(500)])
                 }
                 
     }
