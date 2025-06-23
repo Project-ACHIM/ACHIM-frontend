@@ -28,15 +28,7 @@ struct Rankingheader: View {
             //履歴ボタン
             HStack(alignment: .lastTextBaseline) {
                 Spacer()
-                Button(action: {
-                    //履歴選択処理
-                }, label:{
-                    Text("履歴")
-                        .zenFont(.medium, size:12, color: Color.defaultBlack)
-                })
-                .frame(width: 50, height: 25)
-                .background(Color.baseSky)
-                .cornerRadius(5)
+                RankingHalfsheet()
                 .padding(.trailing, 25)
                 .padding(.bottom, 30)
             }
