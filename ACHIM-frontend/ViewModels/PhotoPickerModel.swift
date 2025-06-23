@@ -12,6 +12,7 @@ class PhotoPickerModel: ObservableObject {
     @Published var image: UIImage? = nil
     @Published var showModal: Bool = false
     
+    
     func reset() {
         image = nil
         showModal = false

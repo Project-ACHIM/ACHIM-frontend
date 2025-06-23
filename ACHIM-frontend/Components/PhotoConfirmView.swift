@@ -25,18 +25,18 @@ struct PhotoConfirmView: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width:250,height: 350)
+                    .frame(maxWidth: 250, maxHeight: 350) // これ以上にはならない
                     .cornerRadius(16)
                     .padding(.vertical, 4)
             } else {
                 Rectangle()
                     .fill(Color.blue.opacity(0.1))
-                    .frame(width:250,height: 350)
+                    .frame(width: 250, height: 350)
                     .cornerRadius(16)
             }
             
             HStack(spacing: 20) {
-                Button("やり直す") {
+                ActivityButtonView(label: "やり直す", isPrimary: false) {
                     viewModel.reset()
                 }
                 .frame(width: 100, height: 40)
@@ -44,7 +44,7 @@ struct PhotoConfirmView: View {
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 
-                Button("確定") {
+                ActivityButtonView(label: "確定", isPrimary: true) {
                     onConfirm()
                     viewModel.showModal = false
                 }
