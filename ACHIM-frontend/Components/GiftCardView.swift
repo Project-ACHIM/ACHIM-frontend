@@ -47,12 +47,14 @@ struct GiftCardView: View {
                 
                 
                 // 右側：画像の代わりに空の四角
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color("hex6CB0FF").opacity(0.2))
+                Image(.no)
+                    .resizable()
+                    .scaledToFill()
                     .frame(width: 130, height: 130)
+                    .clipped()
+                    .cornerRadius(10)
                     .padding(.leading, 10)
-            }.padding(15)
-
+            }
         }
     }
 }
