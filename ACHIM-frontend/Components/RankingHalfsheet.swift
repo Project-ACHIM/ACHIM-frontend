@@ -36,11 +36,12 @@ public struct RankingHalfsheet: View {
                             .padding(.top, 10)
                         Spacer()
                     }
-                    VStack(spacing: 16){
+                    
+                    VStack {
                         HalfsheetCard(ranking_num: 1)
                         Spacer()
                     }
-                    .padding(.top, 70)
+                        .padding(.top, 70)
                     
                 }
             }

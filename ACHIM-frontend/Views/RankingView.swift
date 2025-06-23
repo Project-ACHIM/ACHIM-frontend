@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct RankingView: View {
+    @State var ShowFullScreenCover: Bool = false
     var body: some View {
         //全体のアイテム
         ZStack {
@@ -59,7 +60,15 @@ struct RankingView: View {
                 Spacer()
     
                 VStack(alignment: .center,spacing: 20){
-                    RankingMyCard(userName: "マイネーム", rank: 5, sp: 500000)
+                    VStack(spacing: 16){
+                        Button(action:{
+                            ShowFullScreenCover.toggle()
+                        }){
+                            RankingMyCard(userName: "マイネーム", rank: 5, sp: 500000)
+                        }
+                    }.fullScreenCover(isPresented: $ShowFullScreenCover) {
+                        RankingHistory()
+                    }
                     
                     VStack(alignment: .center,spacing: 16){
                         RankingCards(userName: "ライバルネーム", rank: 1, sp: 1000000)

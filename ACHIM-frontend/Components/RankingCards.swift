@@ -16,10 +16,7 @@ struct RankingCards: View {
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 345, height: 75)
                 .foregroundStyle(Color.white)
-//                .overlay(   //角丸ボーダー
-//                    RoundedRectangle(cornerRadius: 16)
-//                        .stroke(Color.navy, lineWidth: 1)
-//                )
+
             //カード内要素
             HStack(alignment: .center, spacing: 16){
                 //順位テキスト
