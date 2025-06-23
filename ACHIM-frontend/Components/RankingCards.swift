@@ -16,7 +16,6 @@ struct RankingCards: View {
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 345, height: 75)
                 .foregroundStyle(Color.white)
-            
             //カード内要素
             HStack(alignment: .center, spacing: 16){
                 //順位テキスト
@@ -26,6 +25,7 @@ struct RankingCards: View {
                         .zenFont(.bold, size: 40, color:Color.hex347CD1)
                     Text("位")
                         .zenFont(.bold, size: 24, color:Color.hex347CD1)
+
                 }
                 .frame(width: 50, height: 80)
                 //プロフィール画像
@@ -37,6 +37,7 @@ struct RankingCards: View {
                 VStack(alignment: .trailing, spacing: 8){
                     Text(userName)
                         .zenFont(.medium, size: 16, color:Color.defaultBlack)
+
                     // SP
                     HStack{
                         Image(.sp)  //SP img

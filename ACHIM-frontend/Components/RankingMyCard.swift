@@ -20,7 +20,9 @@ struct RankingMyCard: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.navy, lineWidth: 1)
                 )
+
                 .shadow(color: Color.navy.opacity(0.4), radius: 6, y:2)
+
             //カード内要素
             HStack(alignment: .center, spacing: 16){
                 //順位テキスト
@@ -30,7 +32,6 @@ struct RankingMyCard: View {
                         .zenFont(.bold, size: 48, color: Color.hex347CD1)
                     Text("位")
                         .zenFont(.bold, size: 24, color: Color.hex347CD1)
-
                 }
                 .frame(width: 50, height: 80)
                 //プロフィール画像
@@ -55,7 +56,6 @@ struct RankingMyCard: View {
                                 .zenFont(.bold, size: 24, color: Color.defaultBlack)
                             Text("pt")
                                 .zenFont(.bold, size: 16, color: Color.defaultBlack)
-
                         }
                     }
                 }

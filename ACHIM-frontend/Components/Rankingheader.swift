@@ -29,7 +29,6 @@ struct Rankingheader: View {
             HStack(alignment: .lastTextBaseline) {
                 Spacer()
                 RankingHalfsheet()
-
                 .padding(.trailing, 25)
                 .padding(.bottom, 30)
             }
