@@ -13,7 +13,7 @@ struct RankingMyCard: View {
         ZStack {
             //カード背面
             RoundedRectangle(cornerRadius: 10)
-                .frame(width: 360, height: 85)
+                .frame(width: 370, height: 85)
                 .foregroundStyle(Color.white)
             // 角丸ボーダー
                 .overlay(
@@ -30,6 +30,7 @@ struct RankingMyCard: View {
                         .zenFont(.bold, size: 48, color: Color.hex347CD1)
                     Text("位")
                         .zenFont(.bold, size: 24, color: Color.hex347CD1)
+
                 }
                 .frame(width: 50, height: 80)
                 //プロフィール画像
@@ -54,6 +55,7 @@ struct RankingMyCard: View {
                                 .zenFont(.bold, size: 24, color: Color.defaultBlack)
                             Text("pt")
                                 .zenFont(.bold, size: 16, color: Color.defaultBlack)
+
                         }
                     }
                 }

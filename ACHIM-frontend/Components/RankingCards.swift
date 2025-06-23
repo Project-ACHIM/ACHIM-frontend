@@ -16,7 +16,7 @@ struct RankingCards: View {
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 345, height: 75)
                 .foregroundStyle(Color.white)
-
+            
             //カード内要素
             HStack(alignment: .center, spacing: 16){
                 //順位テキスト
