@@ -9,8 +9,9 @@ import SwiftUI
 import PhotosUI
 
 class PhotoPickerModel: ObservableObject {
-    @Published var image: UIImage? = nil
-    @Published var showModal: Bool = false
+    @Published var image: UIImage?
+    @Published var showModal = false          // 既存
+    @Published var showingPicker = false      // ← 追加
     
     
     func reset() {
