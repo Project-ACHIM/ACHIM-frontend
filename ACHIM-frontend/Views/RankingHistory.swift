@@ -26,19 +26,20 @@ struct RankingHistory: View {
                 Spacer()
                     
             }
-            VStack(spacing: 16) {
+            VStack(spacing: 20) {
                 RankingHistoryTitle(PageTytle: "現在のランキング")
-                    
-                
                 RankingMyCard(userName: "マイネーム", rank: 5, sp: 500000)
             }
-            .padding(.top, 20)
+            .padding(.top, 24)
             
             VStack(spacing: 16) {
                 RankingHistoryTitle(PageTytle: "獲得ポイントデータ")
                 
             }
-            .padding(.top, 20)
+            .padding(.top, 32)
+            
+            DayRanking()
+                .padding(.top, 16)
             Spacer()
         }
     } //

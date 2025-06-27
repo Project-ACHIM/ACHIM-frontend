@@ -77,10 +77,10 @@ struct NowRankingCard: View {
 struct DayRanking: View {
     @State var week_group: Bool = false //trueでウォーキング, falseでランニング
     var body: some View {
-        VStack{
+        VStack(spacing: 8){
             DayRankingHeader(day: Date())
             
-            VStack{
+            VStack(spacing: 8){
                 //合計ポイント数
                 NowRankingCard(title: "合計ポイント数", sub_text: 0, point: Int(999999), bg_color: .hexE6F3FF, is_sub_text_show: false )
                 if(week_group){
@@ -90,8 +90,6 @@ struct DayRanking: View {
                     //ランニングポイント数
                     NowRankingCard(title: "ランニングポイント数", sub_text: 15000, point: Int(200), bg_color: .hexD8EAFF, is_sub_text_show: true )
                 }
-                
-                
                 //イベントポイント
                 NowRankingCard(title: "イベントポイント数", sub_text: 15000, point: Int(200), bg_color: .hexE6F3FF, is_sub_text_show: false )
                 //起床時間
