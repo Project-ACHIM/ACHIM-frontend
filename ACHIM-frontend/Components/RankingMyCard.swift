@@ -20,8 +20,8 @@ struct RankingMyCard: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.navy, lineWidth: 1)
                 )
-
-                .shadow(color: Color.navy.opacity(0.4), radius: 6, y:2)
+            // シャドウ
+                .shadow(color: Color.navy.opacity(0.4), radius: 4, y: 4)
 
             //カード内要素
             HStack(alignment: .center, spacing: 16){
