@@ -31,8 +31,8 @@ struct PhotoView: View {
                 }
             }
         }
-        .onChange(of: selectedItem) { newItem in
-            if let item = newItem {
+        .onChange(of: selectedItem) { oldValue, newValue in
+            if let item = newValue {
                 Task {
                     if let data = try? await item.loadTransferable(type: Data.self),
                        let uiImage = UIImage(data: data) {
