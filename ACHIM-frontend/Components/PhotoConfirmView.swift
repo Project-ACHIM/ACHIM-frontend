@@ -17,9 +17,10 @@ struct PhotoConfirmView: View {
                 .font(.system(size: 18, weight: .bold))
                 .foregroundColor(Color("hex6CB0FF"))
             
-            Text("あなたの名前が公開されることはありません")
+            Text("あなたの名前が公開されることはありません。\n一度確定を押すと変更できませんので、\nご注意ください")
                 .font(.system(size: 12))
                 .foregroundColor(.gray)
+                .multilineTextAlignment(.center) // ← 追加するとセンター寄せに
             
             if let image = viewModel.image {
                 Image(uiImage: image)
@@ -53,7 +54,9 @@ struct PhotoConfirmView: View {
                 .foregroundColor(.white)
                 .cornerRadius(10)
             }
+            .frame(maxWidth: .infinity) // ← 中央配置用
         }
+        .frame(maxWidth: 300) // ← 全体の横幅を制限
         .padding()
         .background(Color.white)
         .cornerRadius(20)
