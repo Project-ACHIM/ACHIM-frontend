@@ -19,9 +19,15 @@ struct TabCardView: View {
                 case 0:
                     RankingView()
                 case 1:
-                    HomeView()
+                    HomeView(
+                        path: .constant([]),
+                        selectedPhoto: .constant(nil)
+                    )
                 case 2:
-                    HomeView()
+                    HomeView(
+                        path: .constant([]),
+                        selectedPhoto: .constant(nil)
+                    )
                 case 3:
                     RankingView()
                 case 4:
@@ -29,7 +35,10 @@ struct TabCardView: View {
                 case 5:
                     RankingView()
                 default:
-                    HomeView()
+                    HomeView(
+                        path: .constant([]),
+                        selectedPhoto: .constant(nil)
+                    )
                 }
             }
 
