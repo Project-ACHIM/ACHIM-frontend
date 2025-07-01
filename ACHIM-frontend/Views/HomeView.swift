@@ -9,7 +9,10 @@ import SwiftUI
 import PhotosUI
 
 struct HomeView: View {
-    @StateObject private var viewModel  = StepCounterViewModel()
+    @Binding var path: [Page]
+    @Binding var selectedPhoto: UIImage?
+    
+    @StateObject private var viewModel = StepCounterViewModel()
     @StateObject private var photoModel = PhotoPickerModel()
     
     @State private var selectedItem: PhotosPickerItem?
@@ -24,8 +27,10 @@ struct HomeView: View {
                 Spacer().frame(height: 60).padding(.bottom, 14)
                 
                 CountdownCardView()
+                    .frame(height: 80)
                     .padding(.bottom, 17)
                 StepCountCardView(stepCount: viewModel.stepCount)
+                    .frame(height: 180)
                     .padding(.bottom, 17)
                 CountPointCardView()
                     .padding(.bottom, 17)
@@ -34,56 +39,52 @@ struct HomeView: View {
                 
                 // -------- ボタン or PhotosPicker --------
                 if !startedMorningActivity {
-                    // ① 朝活前
                     ActivityButtonView(label: "朝活を始める") {
                         startedMorningActivity = true
                     }
                     .padding(.bottom, 35)
                     
                 } else if !photoPosted {
-                    // ② 写真未投稿
                     PhotosPicker(
                         selection: $selectedItem,
                         matching: .images,
                         photoLibrary: .shared()
                     ) {
-                        ActivityButtonView(label: "写真投稿",
-                                           asLabelOnly: true)
+                        ActivityButtonView(label: "写真投稿", asLabelOnly: true)
                     }
                     .padding(.bottom, 35)
                     
                 } else {
-                    // ③ 写真投稿済み → 投票へ
                     ActivityButtonView(label: "投票") {
-                        // 投票画面へのナビゲーションなど
-                        print("Go to vote!")
+                        path.append(.voting) // ← 2回目以降も遷移
                     }
                     .padding(.bottom, 35)
                 }
-                
-                nav_bar()
             }
             
-            // 固定ヘッダー
+            // ヘッダー
             PointHeaderView()
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 .zIndex(10)
             
-            // 選択後モーダル
+            // 確認モーダル
             if photoModel.showModal {
-                Color.black.opacity(0.4).ignoresSafeArea()
-                PhotoConfirmView(viewModel: photoModel) {
-                    // ✅ 写真を確定
-                    photoPosted = true          // ← ここでフラグ ON
-                    selectedItem = nil          // （任意）Picker をリセット
-                    // photoModel.reset()       // 画像をクリアしたい場合はこちら
+                ZStack {
+                    Color.black.opacity(0.4).ignoresSafeArea()
+                    PhotoConfirmView(viewModel: photoModel) {
+                        // ✅ 確定 → 投票へ
+                        selectedPhoto = photoModel.image
+                        photoPosted = true
+                        selectedItem = nil
+                        photoModel.showModal = false
+                        path.append(.voting)
+                    }
                 }
+                .zIndex(100)
             }
         }
-        // ---------- 画像が変わったら取り込み ----------
         .onChange(of: selectedItem) { _, newItem in
             guard let item = newItem else { return }
-            
             Task {
                 if let data = try? await item.loadTransferable(type: Data.self),
                    let uiImage = UIImage(data: data) {
@@ -99,5 +100,8 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(
+        path: .constant([]),
+        selectedPhoto: .constant(nil)
+    )
 }

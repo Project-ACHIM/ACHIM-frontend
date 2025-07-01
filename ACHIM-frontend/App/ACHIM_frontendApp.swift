@@ -11,7 +11,7 @@ import SwiftUI
 struct ACHIM_frontendApp: App {
     var body: some Scene {
         WindowGroup {
-            TabCardView()
+            RootNavigationView()
         }
     }
 }
