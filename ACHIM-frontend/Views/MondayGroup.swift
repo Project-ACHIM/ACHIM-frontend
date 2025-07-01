@@ -7,7 +7,10 @@
 import SwiftUI
 
 struct MondayGroup: View {
-    @State private var isShowingView: Bool = false
+    @State private var isShowingView: Bool = false  //次へボタン押されてるか
+    @State var bp : Int //bp
+    @State var numberString = ""
+    
     
     var body: some View {
         if isShowingView {RankingView()} //画面遷移グループ選択へ
@@ -25,13 +28,60 @@ struct MondayGroup: View {
                     }
                 }
                 .padding(.top, 40)
+                
+                //グループ選択
+                GroupSelection()
+                
+                VStack{
+                    Text("ポイント追加")
+                        .zenFont(.bold, size: 30, color: .navy)
+                    Text("グルーで賭けるポイント数を決めてください")
+                        .zenFont(.regular, size: 14, color: .defaultBlack)
+                }
+                VStack(spacing: 8) {
+                    ZStack{
+                        Image(.bp)
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .padding(.leading, 55)
+                        HStack {
+                            Text("保有ポイント")
+                                .zenFont(.regular, size: 12, color: .defaultBlack)
+                            Spacer()
+                            
+                            //bp
+                            HStack {
+                                Text("\(bp)")
+                                    .zenFont(.bold, size: 24, color: .defaultBlack)
+                                
+                                Text("pt")
+                                    .zenFont(.bold, size: 16, color: .defaultBlack)
+                            }
+                        }
+                    }
+                    .frame(width: 320)
+                    
+                    //Line
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(width: 330, height: 1)
+                        .foregroundStyle(Color.gray)
+                }
+                
+                VStack{
+                    TextField("賭けるポイント", text: $numberString)
+                        .zenFont(.regular, size: 14)
+                        .frame(width: 330, height: 55)
+                        .keyboardType(.decimalPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                }
+
                 Spacer()
                 //footer
                 ZStack {
                     Rectangle()
                         .fill(Color.navy)
                         .frame(height: 120)
-                    
                     // 次へボタン
                     Button(action: {
                         isShowingView.toggle()
@@ -43,13 +93,13 @@ struct MondayGroup: View {
                     .background(Color.white)
                     .cornerRadius(13)
                     .padding(.bottom, 24)
-                }
-            }
+                }   //ZStack
+            }   //VStack
             .ignoresSafeArea(edges: .bottom)
         }   //else
     }   //body
 }   //View
 
 #Preview {
-    MondayGroup()
+    MondayGroup(bp: Int())
 }

@@ -6,28 +6,6 @@
 //
 import SwiftUI
 
-struct WalkGroupButton: View {
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.hexFBBC04)
-                .frame(width: 145, height: 180)
-                .cornerRadius(10)
-            
-            VStack {
-                Text("ウォーキンググループ")
-                    .zenFont(.bold, size: 12, color: .white)
-                ZStack {
-                    Image(.achiWalk)
-                        .resizable()
-                        .frame(width: 120, height: 130)
-                        .cornerRadius(5)
-                }
-            }   //VStack
-        }   //ZStack
-    }   //body
-}   //View
-
 struct GroupSelection: View {
     @State var walk : Bool = false
     @State var run : Bool = false
@@ -67,7 +45,8 @@ struct GroupSelection: View {
                         }
                     }   //VStack
                 }   //ZStack
-            }
+            }   //button
+            .buttonStyle(.plain)
             
             //ランニング
             Button(action:{
@@ -101,10 +80,11 @@ struct GroupSelection: View {
                         }
                     }
                 }
-            }
-        }
-    }
-}
+            }   //button
+            .buttonStyle(.plain)
+        }   //HStack
+    }   //body
+}   //View
 
 #Preview {
     GroupSelection()

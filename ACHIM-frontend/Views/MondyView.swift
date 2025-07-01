@@ -10,7 +10,7 @@ struct MondayView: View {
     @State private var isShowingView: Bool = false
     
     var body: some View {
-        if isShowingView {MondayGroup()} //画面遷移グループ選択へ
+        if isShowingView {MondayGroup(bp: 50000)} //画面遷移グループ選択へ
         else{
             ZStack {
                 // 背景パターン
