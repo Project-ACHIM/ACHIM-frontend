@@ -13,10 +13,18 @@ struct MondayGroup: View {
         if isShowingView {RankingView()} //画面遷移グループ選択へ
         else{
             VStack {
-                
-                
-                
-                
+                // お疲れテキスト
+                VStack {
+                    VStack{
+                        Text("今週も頑張りましょう！")
+                            .zenFont(.bold, size: 16, color: .defaultBlack)
+                        Text("グループ選択")
+                            .zenFont(.bold, size: 30, color: .navy)
+                        Text("今週参加するグループを選択してください")
+                            .zenFont(.regular, size: 14, color: .defaultBlack)
+                    }
+                }
+                .padding(.top, 40)
                 Spacer()
                 //footer
                 ZStack {
