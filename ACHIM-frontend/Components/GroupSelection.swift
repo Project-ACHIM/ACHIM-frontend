@@ -6,22 +6,56 @@
 //
 import SwiftUI
 
+struct WalkGroupButton: View {
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .fill(Color.hexFBBC04)
+                .frame(width: 145, height: 180)
+                .cornerRadius(10)
+            
+            VStack {
+                Text("ウォーキンググループ")
+                    .zenFont(.bold, size: 12, color: .white)
+                ZStack {
+                    Image(.achiWalk)
+                        .resizable()
+                        .frame(width: 120, height: 130)
+                        .cornerRadius(5)
+                }
+            }   //VStack
+        }   //ZStack
+    }   //body
+}   //View
+
 struct GroupSelection: View {
     @State var walk : Bool = false
     @State var run : Bool = false
     var body: some View {
         HStack {
+            
+            //ウォーキング
             Button(action:{
-                walk = true
-                print("ウォーキンググループを選択")
+                if(run || !walk){
+                    run = false
+                    walk = true
+                    print("ウォーキンググループを選択")
+                }
             }){
-                //ウォーキング
                 ZStack {
-                    Rectangle()
-                        .fill(Color.hexFBBC04)
-                        .frame(width: 145, height: 180)
-                        .cornerRadius(10)
-                    
+                    if(walk){
+                        Rectangle()
+                            .fill(Color.hexFBBC04)
+                            .frame(width: 145, height: 180)
+                            .cornerRadius(10)
+                            .shadow(radius: 2, x: 0, y: 4)
+                    }else{
+                        Rectangle()
+                            .fill(Color.hexFBBC04)
+                            .frame(width: 145, height: 180)
+                            .cornerRadius(10)
+                    }
+                        
                     VStack {
                         Text("ウォーキンググループ")
                             .zenFont(.bold, size: 12, color: .white)
@@ -31,21 +65,31 @@ struct GroupSelection: View {
                                 .frame(width: 120, height: 130)
                                 .cornerRadius(5)
                         }
-                    }
-                }
+                    }   //VStack
+                }   //ZStack
             }
             
+            //ランニング
             Button(action:{
-                run = true
-                print("ランニンググループを選択")
+                if(walk || !run){
+                    walk = false
+                    run = true
+                    print("ランニンググループを選択")
+                }
             }){
-                //ランニング
                 ZStack {
-                    Rectangle()
-                        .fill(Color.navy)
-                        .frame(width: 145, height: 180)
-                        .cornerRadius(10)
-                    
+                    if(run){
+                        Rectangle()
+                            .fill(Color.navy)
+                            .frame(width: 145, height: 180)
+                            .cornerRadius(10)
+                            .shadow(radius: 2, x: 0, y: 4)
+                    }else{
+                        Rectangle()
+                            .fill(Color.navy)
+                            .frame(width: 145, height: 180)
+                            .cornerRadius(10)
+                    }
                     VStack {
                         Text("ランニンググループ")
                             .zenFont(.bold, size: 12, color: .white)
@@ -58,7 +102,6 @@ struct GroupSelection: View {
                     }
                 }
             }
-            
         }
     }
 }
