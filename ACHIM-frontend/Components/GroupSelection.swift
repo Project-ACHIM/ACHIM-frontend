@@ -11,7 +11,6 @@ struct GroupSelection: View {
     @State var run : Bool = false
     var body: some View {
         HStack {
-            
             //ウォーキング
             Button(action:{
                 if(run || !walk){

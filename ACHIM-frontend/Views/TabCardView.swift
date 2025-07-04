@@ -19,10 +19,7 @@ struct TabCardView: View {
                 case 0:
                     RankingView()
                 case 1:
-                    HomeView(
-                        path: .constant([]),
-                        selectedPhoto: .constant(nil)
-                    )
+                    ExchangeView()
                 case 2:
                     HomeView(
                         path: .constant([]),

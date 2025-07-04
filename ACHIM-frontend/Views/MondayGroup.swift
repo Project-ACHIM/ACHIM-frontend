@@ -31,13 +31,14 @@ struct MondayGroup: View {
                 
                 //グループ選択
                 GroupSelection()
-                
+            
                 VStack{
                     Text("ポイント追加")
                         .zenFont(.bold, size: 30, color: .navy)
                     Text("グルーで賭けるポイント数を決めてください")
                         .zenFont(.regular, size: 14, color: .defaultBlack)
                 }
+                .padding(.top, 48)
                 VStack(spacing: 8) {
                     ZStack{
                         Image(.bp)
@@ -67,12 +68,22 @@ struct MondayGroup: View {
                         .foregroundStyle(Color.gray)
                 }
                 
-                VStack{
+                VStack(spacing: 0){
                     TextField("賭けるポイント", text: $numberString)
                         .zenFont(.regular, size: 14)
                         .frame(width: 330, height: 55)
-                        .keyboardType(.decimalPad)
+                        .keyboardType(.numberPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .onSubmit {
+                            print(numberString)
+                        }
+                    
+                    HStack() {
+                        Text("100 ~ 10,000pt以内で追加できます")
+                            .zenFont(.regular, size: 10, color: .defaultBlack)
+                        Spacer()
+                    }
+                    .frame(width: 325)
                     
                 }
 
