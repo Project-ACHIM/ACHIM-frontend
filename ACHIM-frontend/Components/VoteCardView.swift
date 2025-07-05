@@ -9,6 +9,7 @@ import SwiftUI
 
 struct VoteCardView: View {
     @Binding var didVote: Bool
+    let photo: UIImage?
     
     var body: some View {
         VStack(spacing: 8) {
@@ -17,13 +18,25 @@ struct VoteCardView: View {
                     .fill(Color.baseSky)
                     .frame(width: 250, height: 350)
                 
-                Button(action: {
+                if let photo {
+                    Image(uiImage: photo)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 250, height: 350)
+                        .clipped()
+                        .cornerRadius(16)
+                } else {
+                    Image(.no)
+                        .frame(width: 250, height: 350)
+                }
+                
+                Button {
                     didVote.toggle()
-                }) {
+                } label: {
                     Image(systemName: "heart.fill")
                         .resizable()
                         .frame(width: 24, height: 24)
-                        .foregroundColor(didVote ? .hex4089D3 : .hex6CB0FF)
+                        .foregroundColor(didVote ? .hex6CB0FF : .hexACD3FF)
                         .padding(10)
                 }
             }
@@ -50,5 +63,13 @@ struct VoteCardView: View {
                 .foregroundColor(.gray)
         }
         .frame(width: 200)
+    }
+}
+
+struct VoteCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        VoteCardView(didVote: .constant(false), photo: UIImage(systemName: "photo"))
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
