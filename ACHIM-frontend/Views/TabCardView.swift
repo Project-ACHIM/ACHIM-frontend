@@ -19,11 +19,7 @@ struct TabCardView: View {
                 case 0:
                     RankingView()
                 case 1:
-<<<<<<< HEAD
                     ExchangeView()
-=======
-                    HomeView()
->>>>>>> develop
                 case 2:
                     HomeView()
                 case 3:
