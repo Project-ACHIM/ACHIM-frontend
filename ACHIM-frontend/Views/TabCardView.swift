@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct TabCardView: View {
-    @State private var selectedIndex = 0
+    @State private var selectedIndex = 2
 
     let tabIcons = ["crown", "gift", "house", "heart.text.clipboard", "person.circle"]
 

@@ -11,6 +11,7 @@ struct RankingView: View {
     var body: some View {
         //全体のアイテム
         ZStack {
+            Color.white
             VStack {
                 Text("ランキング")
                     .zenFont(.bold, size:32, color: Color.white)
