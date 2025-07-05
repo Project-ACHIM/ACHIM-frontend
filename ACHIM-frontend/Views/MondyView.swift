@@ -13,7 +13,7 @@ struct MondayView: View {
         if isShowingView {MondayGroup(bp: 50000)} //画面遷移グループ選択へ
         else{
             ZStack {
-                // 背景パターン
+                Color.white.ignoresSafeArea()                // 背景パターン
                 Image(.bgPattern)
                     .padding(.bottom, 150)
                 

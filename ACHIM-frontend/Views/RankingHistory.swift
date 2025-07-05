@@ -11,7 +11,7 @@ struct RankingHistory: View {
     var body: some View {
         //戻るボタン
         ZStack {
-            Color.white
+            Color.white.ignoresSafeArea()
             VStack {
                 
                 HStack {
