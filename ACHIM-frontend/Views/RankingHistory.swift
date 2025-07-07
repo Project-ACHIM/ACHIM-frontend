@@ -29,7 +29,7 @@ struct RankingHistory: View {
                     Spacer()
                     
                 }
-                VStack(spacing: 20) {
+                VStack(spacing: 28) {
                     RankingHistoryTitle(PageTytle: "現在のランキング")
                     RankingMyCard(userName: "マイネーム", rank: 5, sp: 500000)
                 }
@@ -40,7 +40,6 @@ struct RankingHistory: View {
                     
                 }
                 .padding(.top, 32)
-                
                 DayRanking()
                     .padding(.top, 16)
                 Spacer()

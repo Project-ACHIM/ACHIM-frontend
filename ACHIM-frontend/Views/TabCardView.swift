@@ -25,11 +25,9 @@ struct TabCardView: View {
                     case 2:
                         HomeView()
                     case 3:
-                        RankingView()
+                        HealthView()
                     case 4:
-                        RankingView()
-                    case 5:
-                        RankingView()
+                        SettingView()
                     default:
                         HomeView()
                     }
