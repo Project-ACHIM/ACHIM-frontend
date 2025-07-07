@@ -20,6 +20,9 @@ struct HomeView: View {
     @State private var isAfter6PM = false
     @State private var remainingSeconds: Int = 0
     @State private var isMorningSession: Bool = false
+    @State private var myStatusSymbol: String = "－"
+    @State private var showTodayPhotoModal = false
+    @State private var hasShownTodayPhotoModal = false
     
     func checkIfAfter6PM() {
         let now = Calendar.current.dateComponents([.hour], from: Date())
@@ -37,12 +40,18 @@ struct HomeView: View {
                     HomeHeaderSection(
                         remainingSeconds: $remainingSeconds,
                         stepCount: viewModel.stepCount,
-                        isMorningSession: $countdownModel.isMorningSession
+                        isMorningSession: $countdownModel.isMorningSession,
+                        myStatusSymbol: $myStatusSymbol
                     )
                     
                     if !startedMorningActivity && !didFinishMorningActivity {
                         ActivityButtonView(label: "朝活を始める") {
                             startedMorningActivity = true
+                            myStatusSymbol = "◯"
+                            if !hasShownTodayPhotoModal {
+                                showTodayPhotoModal = true
+                                hasShownTodayPhotoModal = true
+                            }
                         }
                         .disabled(!countdownModel.isMorningSession)
                         .opacity(countdownModel.isMorningSession ? 1.0 : 0.5)
@@ -56,7 +65,8 @@ struct HomeView: View {
                             selectedItem: $selectedItem,
                             isShowingVoting: $isShowingVoting,
                             isAfter6PM: $isAfter6PM,
-                            didFinishMorningActivity: $didFinishMorningActivity
+                            didFinishMorningActivity: $didFinishMorningActivity,
+                            myStatusSymbol: $myStatusSymbol
                         )
                     }
                 }
@@ -78,6 +88,9 @@ struct HomeView: View {
                     .zIndex(100)
                 }
             }
+            .sheet(isPresented: $showTodayPhotoModal) {
+                TodayPhotoModalView()
+            }
             .onChange(of: selectedItem) { _, newItem in
                 guard let item = newItem else { return }
                 Task {
@@ -96,6 +109,7 @@ struct HomeView: View {
                 }
             }
             
+            
             if let img = selectedPhoto {
                 NavigationLink(isActive: $isShowingVoting) {
                     VotingView(photo: img)
@@ -104,7 +118,9 @@ struct HomeView: View {
                 }
                 .hidden()
             }
+            
         }
+        
     }
 }
 
