@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CountdownCardView: View {
+    @Binding var remainingSeconds: Int
     @StateObject private var viewModel = CountdownCardViewModel()
     
     var body: some View {
@@ -22,7 +23,6 @@ struct CountdownCardView: View {
                 
                 Group {
                     if isCompact {
-                        // 🔹 50px以下 → 横並び・小さい文字
                         HStack {
                             Text(viewModel.isMorningSession ? "朝活終了まで残り"
                                  : "次の朝活まで残り")
@@ -36,7 +36,6 @@ struct CountdownCardView: View {
                         .padding(.horizontal, 16)
                         .frame(maxWidth: .infinity, alignment: .center)
                     } else {
-                        // 🔸 通常 → 縦並び・大きい文字
                         VStack(spacing: -12) {
                             Text(viewModel.isMorningSession ? "朝活終了まで残り"
                                  : "次の朝活まで残り")
@@ -52,7 +51,10 @@ struct CountdownCardView: View {
                 .frame(width: geo.size.width, height: geo.size.height)
             }
         }
-        .frame(width: 350) // ← 呼び出し側で height を 50 か 80 にすれば見た目変わる
+        .frame(width: 350)
+        .onReceive(viewModel.$timeRemaining) { newValue in
+            remainingSeconds = Int(newValue)
+        }
     }
     
     private func formattedTime(from seconds: TimeInterval) -> String {
@@ -62,8 +64,4 @@ struct CountdownCardView: View {
         let s = total % 60
         return String(format: "%02d:%02d:%02d", h, m, s)
     }
-}
-
-#Preview {
-    CountdownCardView()
 }
