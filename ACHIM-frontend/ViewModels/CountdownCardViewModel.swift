@@ -11,9 +11,9 @@ import Combine
 /// 朝活カウントダウン用のビューモデル
 final class CountdownCardViewModel: ObservableObject {
     @Published var timeRemaining: TimeInterval = 0
-    @Published var isMorningSession = false         // タイトル切替用
-    @Published var activityStarted = false {        // ← 追加
-        didSet { updateTime() }                     // 状態変化ですぐ再計算
+    @Published var isMorningSession: Bool = false
+    @Published var activityStarted = false { // ← 使うなら外向けの状態用途
+        didSet { updateTime() }
     }
     
     private var cancellable: AnyCancellable?
@@ -35,7 +35,7 @@ private extension CountdownCardViewModel {
     func updateTime() {
         let now = Date()
         
-        // 今日の 6:00 & 10:00
+        // ⏰ 朝活時間 → 6:00〜10:00
         var six = calendar.dateComponents([.year, .month, .day], from: now)
         six.hour = 6; six.minute = 0; six.second = 0
         var ten = six; ten.hour = 10
@@ -43,24 +43,19 @@ private extension CountdownCardViewModel {
         guard let todaySix = calendar.date(from: six),
               let todayTen = calendar.date(from: ten) else { return }
         
-        let target: Date
+        // 朝活時間中かどうかを時刻だけで判定
+        isMorningSession = (now >= todaySix && now < todayTen)
         
-        // ───────── 判定 ─────────
-        if activityStarted && now >= todaySix && now < todayTen {
-            // 朝活スタート済み & 朝活時間内 → 10:00 まで
+        let target: Date
+        if isMorningSession {
+            // 朝活中 → 終了まで
             target = todayTen
-            isMorningSession = true
         } else {
-            // まだ開始していない、または時間外 → 次の 6:00 まで
-            if now < todaySix {
-                target = todaySix        // 当日 6:00
-            } else {
-                target = calendar.date(byAdding: .day, value: 1,
-                                       to: todaySix)! // 翌日 6:00
-            }
-            isMorningSession = false
+            // 朝活外 → 次の開始まで
+            target = now < todaySix
+            ? todaySix
+            : calendar.date(byAdding: .day, value: 1, to: todaySix)!
         }
-        // ────────────────────────
         
         timeRemaining = max(target.timeIntervalSince(now), 0)
     }

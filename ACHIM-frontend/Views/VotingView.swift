@@ -12,6 +12,7 @@ struct VotingView: View {
     @State private var didVote         = false
     @Environment(\.dismiss) private var dismiss
     let photo: UIImage  // 必ず unwrap 自信があるなら非 Optional
+    @State private var remainingSeconds: Int = 0
     
     
     var body: some View {
@@ -20,7 +21,7 @@ struct VotingView: View {
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 .zIndex(10)
             
-            CountdownCardView()
+            CountdownCardView(remainingSeconds: $remainingSeconds)
                 .frame(height: 50)
                 .padding(.top, 15)
                 .padding(.bottom, 10)

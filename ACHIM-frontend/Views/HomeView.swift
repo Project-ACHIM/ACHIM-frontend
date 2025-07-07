@@ -8,13 +8,25 @@ import SwiftUI
 import PhotosUI
 
 struct HomeView: View {
-    @StateObject private var viewModel        = StepCounterViewModel()
-    @StateObject private var photoModel       = PhotoPickerModel()
-    @State private var selectedItem           : PhotosPickerItem?
+    @StateObject private var countdownModel = CountdownCardViewModel()
+    @StateObject private var viewModel = StepCounterViewModel()
+    @StateObject private var photoModel = PhotoPickerModel()
+    @State private var didFinishMorningActivity = false
+    @State private var selectedItem: PhotosPickerItem?
     @State private var startedMorningActivity = false
-    @State private var photoPosted            = false
-    @State private var selectedPhoto          : UIImage?
-    @State private var isShowingVoting        = false
+    @State private var photoPosted = false
+    @State private var selectedPhoto: UIImage?
+    @State private var isShowingVoting = false
+    @State private var isAfter6PM = false
+    @State private var remainingSeconds: Int = 0
+    @State private var isMorningSession: Bool = false
+    
+    func checkIfAfter6PM() {
+        let now = Calendar.current.dateComponents([.hour], from: Date())
+        if let hour = now.hour {
+            isAfter6PM = hour >= 18
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -22,40 +34,30 @@ struct HomeView: View {
                 Color.white.ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    Spacer().frame(height: 60).padding(.bottom, 14)
-                    CountdownCardView()
-                        .frame(height: 80)
-                        .padding(.bottom, 17)
-                    StepCountCardView(stepCount: viewModel.stepCount)
-                        .frame(height: 180)
-                        .padding(.bottom, 17)
-                    CountPointCardView()
-                        .padding(.bottom, 17)
-                    UserStatusCardView()
-                        .padding(.bottom, 35)
+                    HomeHeaderSection(
+                        remainingSeconds: $remainingSeconds,
+                        stepCount: viewModel.stepCount,
+                        isMorningSession: $countdownModel.isMorningSession
+                    )
                     
-                    if !startedMorningActivity {
+                    if !startedMorningActivity && !didFinishMorningActivity {
                         ActivityButtonView(label: "朝活を始める") {
                             startedMorningActivity = true
                         }
-                        .padding(.bottom, 35)
-                        
-                    } else if !photoPosted {
-                        PhotosPicker(
-                            selection: $selectedItem,
-                            matching: .images,
-                            photoLibrary: .shared()
-                        ) {
-                            ActivityButtonView(label: "写真投稿", asLabelOnly: true)
-                        }
+                        .disabled(!countdownModel.isMorningSession)
+                        .opacity(countdownModel.isMorningSession ? 1.0 : 0.5)
                         .padding(.bottom, 35)
                         
                     } else {
-                        ActivityButtonView(label: "投票") {
-                            guard selectedPhoto != nil else { return }
-                            isShowingVoting = true
-                        }
-                        .padding(.bottom, 35)
+                        HomeActionSection(
+                            startedMorningActivity: $startedMorningActivity, // ← 順番を定義通りに！
+                            photoPosted: $photoPosted,
+                            selectedPhoto: $selectedPhoto,
+                            selectedItem: $selectedItem,
+                            isShowingVoting: $isShowingVoting,
+                            isAfter6PM: $isAfter6PM,
+                            didFinishMorningActivity: $didFinishMorningActivity
+                        )
                     }
                 }
                 
@@ -67,9 +69,9 @@ struct HomeView: View {
                     ZStack {
                         Color.black.opacity(0.4).ignoresSafeArea()
                         PhotoConfirmView(viewModel: photoModel) {
-                            selectedPhoto       = photoModel.image
-                            photoPosted         = true
-                            selectedItem        = nil
+                            selectedPhoto = photoModel.image
+                            photoPosted = true
+                            selectedItem = nil
                             photoModel.showModal = false
                         }
                     }
@@ -88,14 +90,16 @@ struct HomeView: View {
             }
             .onAppear {
                 viewModel.fetchTodaySteps()
+                checkIfAfter6PM()
+                Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+                    checkIfAfter6PM()
+                }
             }
-            // ← ここにナビゲーション先を定義！
+            
             if let img = selectedPhoto {
                 NavigationLink(isActive: $isShowingVoting) {
-                    // 遷移先ビュー
                     VotingView(photo: img)
                 } label: {
-                    // ラベル部分は空にして隠す
                     EmptyView()
                 }
                 .hidden()

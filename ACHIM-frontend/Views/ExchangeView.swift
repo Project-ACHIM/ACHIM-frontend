@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExchangeView: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading) {
             // 固定表示部分
             BPPointDisplay(points: 500_000)
                 .padding(.bottom, 20)
@@ -25,7 +25,6 @@ struct ExchangeView: View {
 //                .padding(.bottom, 10)
             }
         }
-        .padding()
     }
 }
 
