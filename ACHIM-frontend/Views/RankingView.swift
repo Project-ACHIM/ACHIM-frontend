@@ -11,6 +11,7 @@ struct RankingView: View {
     var body: some View {
         //全体のアイテム
         ZStack {
+            
             VStack {
                 Text("ランキング")
                     .zenFont(.bold, size:32, color: Color.white)
@@ -66,17 +67,12 @@ struct RankingView: View {
                         }){
                             RankingMyCard(userName: "マイネーム", rank: 5, sp: 500000)
                         }
+                        
                     }.fullScreenCover(isPresented: $ShowFullScreenCover) {
                         RankingHistory()
                     }
                     
-                    VStack(alignment: .center,spacing: 16){
-                        RankingCards(userName: "ライバルネーム", rank: 1, sp: 1000000)
-                        RankingCards(userName: "ライバルネーム", rank: 2, sp: 900000)
-                        RankingCards(userName: "ライバルネーム", rank: 3, sp: 800000)
-                        RankingCards(userName: "ライバルネーム", rank: 4, sp: 700000)
-                        RankingCards(userName: "ライバルネーム", rank: 5, sp: 500000)
-                    }
+                    RankingRival()
                     .frame(width: 400, height: 450)
                 }
                 .frame(height: 600)
