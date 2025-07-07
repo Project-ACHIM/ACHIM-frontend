@@ -44,18 +44,20 @@ struct RankingMyCard: View {
                     Text(userName)
                         .zenFont(.medium, size: 18, color: Color.defaultBlack)
                     // SP
-                    HStack{
+                    ZStack{
                         Image(.sp)  //SP img
                             .resizable()
                             .frame(width: 30, height: 30)
-                        
-                        
-                        //SP text
-                        HStack(alignment: .center, spacing : 4){
-                            Text("\(sp)")
-                                .zenFont(.bold, size: 24, color: Color.defaultBlack)
-                            Text("pt")
-                                .zenFont(.bold, size: 16, color: Color.defaultBlack)
+                            .padding(.trailing, 55)
+                        HStack{
+                            Spacer()
+                            //SP text
+                            HStack(alignment: .center, spacing : 4){
+                                Text("\(sp)")
+                                    .zenFont(.bold, size: 24, color: Color.defaultBlack)
+                                Text("pt")
+                                    .zenFont(.bold, size: 16, color: Color.defaultBlack)
+                            }
                         }
                     }
                 }

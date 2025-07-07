@@ -1,20 +1,20 @@
 //
-//  MondyView.swift
+//  MondayMVP.swift
 //  ACHIM-frontend
 //
-//  Created by 2230220 on 2025/06/27.
+//  Created by 2230220 on 2025/07/07.
 //
 import SwiftUI
 
-struct MondayView: View {
-    @State var isShowingView: Bool = false
+struct MondayMVP: View {
+    @State private var isShowingView: Bool = false
     
     var body: some View {
-        if isShowingView {MondayMVP()} //画面遷移グループ選択へ
+        if isShowingView {MondayGroup(bp: 50000)} //画面遷移グループ選択へ
         else{
             ZStack {
                 Color.white.ignoresSafeArea()                // 背景パターン
-                Image(.bgPattern)
+                Image(.mvPbg)
                     .padding(.bottom, 150)
                 
                 // お疲れテキスト
@@ -56,6 +56,7 @@ struct MondayView: View {
                         // 次へボタン
                         Button(action: {
                             isShowingView = true
+                            print("グループ選択画面へ")
                         }) {
                             Text("次へ")
                                 .zenFont(.bold, size: 18, color: .navy)
@@ -70,8 +71,8 @@ struct MondayView: View {
             }
         }   //else
     }   //body
-}   //View
+}
 
 #Preview {
-    MondayView()
+    MondayMVP()
 }

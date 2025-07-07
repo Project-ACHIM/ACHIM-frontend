@@ -1,19 +1,20 @@
 //
-//  MondayGroup.swift
+//  MondayGroupConf.swift
 //  ACHIM-frontend
 //
-//  Created by 2230220 on 2025/06/29.
+//  Created by 2230220 on 2025/07/07.
 //
 import SwiftUI
 
-struct MondayGroup: View {
+struct   MondayGroupConf: View {
     @State private var isShowingView: Bool = false  //次へボタン押されてるか
+    @State private var isShowingAlert: Bool = false //戻るボタン押されてるか
     @State var bp : Int //bp
     @State var numberString = ""
     
-    
     var body: some View {
-        if isShowingView {MondayGroupConf(bp: bp, numberString: numberString)} //画面遷移グループ選択へ
+        if isShowingView { TabCardView() } //画面遷移グループ選択へ
+        else if isShowingAlert { MondayGroup(bp: 50000) }
         else{
             ZStack {
                 Color.white.ignoresSafeArea()
@@ -96,18 +97,34 @@ struct MondayGroup: View {
                         Rectangle()
                             .fill(Color.navy)
                             .frame(height: 120)
-                        // 次へボタン
-                        Button(action: {
-                            isShowingView = true
-                            print("確認画面へ")
-                        }) {
-                            Text("次へ")
-                                .zenFont(.bold, size: 18, color: .navy)
+                        
+                        // 戻るボタン
+                        HStack(spacing: 32) {
+                            Button(action: {
+                                isShowingAlert = true
+                                print("グループ選択画面へ")
+                            }) {
+                                Text("戻る")
+                                    .zenFont(.bold, size: 18, color: .navy)
+                            }
+                            .frame(width: 140, height: 50)
+                            .background(Color.white)
+                            .cornerRadius(13)
+                            .padding(.bottom, 24)
+                            
+                            // 次へボタン
+                            Button(action: {
+                                isShowingView = true
+                                print("メイン画面へ")
+                            }) {
+                                Text("次へ")
+                                    .zenFont(.bold, size: 18, color: .navy)
+                            }
+                            .frame(width: 140, height: 50)
+                            .background(Color.white)
+                            .cornerRadius(13)
+                            .padding(.bottom, 24)
                         }
-                        .frame(width: 250, height: 50)
-                        .background(Color.white)
-                        .cornerRadius(13)
-                        .padding(.bottom, 24)
                     }   //ZStack
                 }   //VStack
                 .ignoresSafeArea(edges: .bottom)
@@ -117,5 +134,5 @@ struct MondayGroup: View {
 }   //View
 
 #Preview {
-    MondayGroup(bp: Int())
+    MondayGroupConf(bp: 500000)
 }

@@ -37,19 +37,23 @@ struct RankingCards: View {
                 VStack(alignment: .trailing, spacing: 8){
                     Text(userName)
                         .zenFont(.medium, size: 16, color:Color.defaultBlack)
-
+                   
                     // SP
-                    HStack{
+                    ZStack {
                         Image(.sp)  //SP img
                             .resizable()
                             .frame(width: 25, height: 25)
-                        
-                        //SP text
-                        HStack(alignment: .center, spacing : 4){
-                            Text("\(sp)")
-                                .zenFont(.bold, size: 20, color:Color.defaultBlack)
-                            Text("pt")
-                                .zenFont(.bold, size: 14, color:Color.defaultBlack)
+                            .padding(.trailing, 55)
+
+                        HStack{
+                            Spacer()
+                            //SP text
+                            HStack(alignment: .center, spacing : 4){
+                                Text("\(sp)")
+                                    .zenFont(.bold, size: 20, color:Color.defaultBlack)
+                                Text("pt")
+                                    .zenFont(.bold, size: 14, color:Color.defaultBlack)
+                            }
                         }
                     }
                 }
