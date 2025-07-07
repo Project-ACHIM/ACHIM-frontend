@@ -23,15 +23,17 @@ struct ActivityButtonView: View {
     var width: CGFloat = 120
     var height: CGFloat = 40
     var asLabelOnly: Bool = false
+    var backgroundColor: Color? = nil
     
     @State private var isPressed = false
     
     init(
         label: String = "朝活を始める",
         isPrimary: Bool = true,
-        width: CGFloat = 120,
+        width: CGFloat = 170,
         height: CGFloat = 40,
         asLabelOnly: Bool = false,
+        backgroundColor: Color? = nil,
         action: @escaping () -> Void = {}
     ) {
         self.label = label
@@ -39,35 +41,36 @@ struct ActivityButtonView: View {
         self.width = width
         self.height = height
         self.asLabelOnly = asLabelOnly
+        self.backgroundColor = backgroundColor
         self.action = action
     }
     
     var body: some View {
-        Group {
-            if asLabelOnly {
-                // ボタンを使わないラベル表示専用モード
-                Text(label)
-                    .zenFont(.medium, size: 16, color: .white)
-                    .frame(width: width, height: height)
-                    .background(isPrimary ? Color("hex6CB0FF") : Color("hex6CB0FF").opacity(0.5))
-                    .cornerRadius(10)
-            } else {
-                // 通常のボタンモード
-                Button(action: {
-                    withAnimation(.spring()) {
-                        isPressed = true
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        isPressed = false
-                        action()
-                    }
-                }) {
+        let bgColor = backgroundColor ?? (isPrimary ? Color("hex6CB0FF") : Color("hex6CB0FF").opacity(0.5))
+            
+            Group {
+                if asLabelOnly {
                     Text(label)
                         .zenFont(.medium, size: 16, color: .white)
                         .frame(width: width, height: height)
-                        .background(isPrimary ? Color("hex6CB0FF") : Color("hex6CB0FF").opacity(0.5))
+                        .background(bgColor)
                         .cornerRadius(10)
-                }
+                } else {
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            isPressed = true
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            isPressed = false
+                            action()
+                        }
+                    }) {
+                        Text(label)
+                            .zenFont(.medium, size: 16, color: .white)
+                            .frame(width: width, height: height)
+                            .background(bgColor) // ← ここに反映
+                            .cornerRadius(10)
+                    }
                 .buttonStyle(NoHighlightButtonStyle())
                 .buttonStyle(PlainButtonStyle())
                 .scaleEffect(isPressed ? 1.02 : 1.0)
