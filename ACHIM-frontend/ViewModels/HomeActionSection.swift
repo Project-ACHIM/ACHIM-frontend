@@ -16,6 +16,7 @@ struct HomeActionSection: View {
     @Binding var isShowingVoting: Bool
     @Binding var isAfter6PM: Bool
     @Binding var didFinishMorningActivity: Bool
+    @Binding var myStatusSymbol: String
     
     var body: some View {
         if !startedMorningActivity {
@@ -51,6 +52,7 @@ struct HomeActionSection: View {
                     selectedPhoto = nil
                     selectedItem = nil
                     didFinishMorningActivity = true
+                    myStatusSymbol = "－"
                 }
             }
             .padding(.bottom, 35)
