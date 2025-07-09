@@ -17,7 +17,7 @@ struct SignupField: View {
     
     var body: some View {
         VStack(spacing: 40) {
-            //ログインフォーム
+            //サインアップフォーム
             VStack(alignment: .center, spacing: 32){
                 //メールアドレス
                 VStack(alignment: .leading, spacing: 0){
@@ -84,9 +84,9 @@ struct SignupField: View {
                     Text("次へ")
                         .zenFont(.bold, size: 14, color: .white)
                 }
-            }
-    }   //VStack
-    .frame(width: 300)
-    }
-}
+            }   // Button
+        }   //VStack
+        .frame(width: 300)
+    }   // body
+}   // View
 
