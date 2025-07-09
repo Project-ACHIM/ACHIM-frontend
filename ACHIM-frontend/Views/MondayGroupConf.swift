@@ -104,12 +104,15 @@ struct   MondayGroupConf: View {
                                 isShowingAlert = true
                                 print("グループ選択画面へ")
                             }) {
-                                Text("戻る")
-                                    .zenFont(.bold, size: 18, color: .navy)
+                                HStack {
+                                    Text("戻る")
+                                        .zenFont(.bold, size: 18, color: .navy)
+                                }
+                                .frame(width: 140, height: 50)
+                                .background(Color.white)
+                                .cornerRadius(13)
                             }
-                            .frame(width: 140, height: 50)
-                            .background(Color.white)
-                            .cornerRadius(13)
+                            
                             .padding(.bottom, 24)
                             
                             // 次へボタン
@@ -117,12 +120,15 @@ struct   MondayGroupConf: View {
                                 isShowingView = true
                                 print("メイン画面へ")
                             }) {
-                                Text("次へ")
-                                    .zenFont(.bold, size: 18, color: .navy)
+                                HStack {
+                                    Text("次へ")
+                                        .zenFont(.bold, size: 18, color: .navy)
+                                }
+                                .frame(width: 140, height: 50)
+                                .background(Color.white)
+                                .cornerRadius(13)
                             }
-                            .frame(width: 140, height: 50)
-                            .background(Color.white)
-                            .cornerRadius(13)
+                            
                             .padding(.bottom, 24)
                         }
                     }   //ZStack

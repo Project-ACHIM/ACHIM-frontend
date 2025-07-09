@@ -101,12 +101,14 @@ struct MondayGroup: View {
                             isShowingView = true
                             print("確認画面へ")
                         }) {
-                            Text("次へ")
-                                .zenFont(.bold, size: 18, color: .navy)
+                            HStack {
+                                Text("次へ")
+                                    .zenFont(.bold, size: 18, color: .navy)
+                            }
+                            .frame(width: 250, height: 50)
+                            .background(Color.white)
+                            .cornerRadius(13)
                         }
-                        .frame(width: 250, height: 50)
-                        .background(Color.white)
-                        .cornerRadius(13)
                         .padding(.bottom, 24)
                     }   //ZStack
                 }   //VStack

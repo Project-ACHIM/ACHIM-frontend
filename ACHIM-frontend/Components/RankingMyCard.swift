@@ -11,6 +11,7 @@ struct RankingMyCard: View {
     @State var sp: Int
     var body: some View {
         ZStack {
+            
             //カード背面
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 370, height: 85)
