@@ -20,21 +20,24 @@ struct InfoPicker: View {
        @State private var selectedPrefecture = ""
 
        var body: some View {
-           VStack(alignment: .leading) {
+           VStack(alignment: .leading, spacing: 4) {
                Text("都道府県")
+                   .zenFont(.medium, size: 12, color: .defaultBlack)
+               
                Picker("", selection: $selectedPrefecture) {
                    ForEach(prefectures, id: \.self) { prefectures in
                        Text(prefectures).tag(prefectures)
                    }
                } // 背景色を非表示にする
-               .frame(width: 150, height: 40)
+               .pickerStyle(.automatic)
+               .frame(width: 200, height: 35)
+               .accentColor(.defaultBlack) // 文字色
                // 角丸ボーダー
-                   .overlay(
-                       RoundedRectangle(cornerRadius: 5)
-                           .stroke(Color.navy, lineWidth: 1)
-                   )
+               .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color.hexC6C6C6, lineWidth: 0.5)
+               )
 
-               .pickerStyle(.menu)
            }
        }
 }

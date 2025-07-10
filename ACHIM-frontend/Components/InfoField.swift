@@ -52,31 +52,12 @@ struct InfoField: View {
                             print("\(pass)")
                         }
                 }   // VStack パスワード
-                //パスワード確認
-                VStack(alignment: .leading, spacing: 0){
-                    Text("都道府県")
-                        .zenFont(.medium, size: 12)
-                    TextField("", text: $passConf)
-                        .zenFont(.regular, size: 12, color: .defaultBlack)
-                        .background(Color.clear)
-                        .frame(width: 300, height: 45)
-                        .textFieldStyle(.roundedBorder)
-                        .keyboardType(.asciiCapable)
-                        .onSubmit{
-                            print("\(passConf)")
-                        }
-                }   // VStack パスワード
+                HStack{
+                    // 都道府県
+                    InfoPicker()
+                    Spacer()
+                }
             }   // VStack ログインフォーム
-            
-            //Googleログイン
-            Button(action:{
-                googleButton = true
-                print("Googleログイン")
-            }){
-                Image(.iosNeutralSqSI)
-            }
-            .buttonStyle(.plain)
-            
             
             Button(action:{
                 SignupButton = true
