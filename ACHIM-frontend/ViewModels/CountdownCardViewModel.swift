@@ -37,8 +37,8 @@ private extension CountdownCardViewModel {
         
         // ⏰ 朝活時間 → 6:00〜10:00
         var six = calendar.dateComponents([.year, .month, .day], from: now)
-        six.hour = 16; six.minute = 0; six.second = 0
-        var ten = six; ten.hour = 19
+        six.hour = 6; six.minute = 0; six.second = 0
+        var ten = six; ten.hour = 10
         
         guard let todaySix = calendar.date(from: six),
               let todayTen = calendar.date(from: ten) else { return }
