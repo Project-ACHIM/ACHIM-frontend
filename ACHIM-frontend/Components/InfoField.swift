@@ -13,23 +13,21 @@ struct InfoField: View {
     @State var passConf: String = ""
     @State var name: String = ""        //名前
     @State var age: Int = 0             //年齢
-    @State var prefectures: Int = 0     //都道府県
-    @State var wakeupTime: Int = 0      //起床時間
 
     //ボタン
     @State var SignupButton: Bool = false
     @State var googleButton: Bool = false
     
      var body: some View {
-        VStack(spacing: 40) {
+        VStack(spacing: 64) {
             //ログインフォーム
-            VStack(alignment: .center, spacing: 32){
+            VStack(alignment: .leading, spacing: 32){
                 //メールアドレス
                 VStack(alignment: .leading, spacing: 0){
                     Text("ユーザーネーム")
                         .zenFont(.medium, size: 12)
                     TextField("", text: $name)
-                        .zenFont(.regular, size: 12, color: .defaultBlack)
+                        .zenFont(.medium, size: 12, color: .defaultBlack)
                         .frame(width: 300, height: 45)
                         .textFieldStyle(.roundedBorder)
                         .keyboardType(.emailAddress)    //キーボードの種類指定
@@ -43,7 +41,7 @@ struct InfoField: View {
                     Text("年齢")
                         .zenFont(.medium, size: 12)
                     TextField("Int", value: $age, format: .number)
-                        .zenFont(.regular, size: 12, color: .defaultBlack)
+                        .zenFont(.medium, size: 12, color: .defaultBlack)
                         .background(Color.clear)
                         .frame(width: 300, height: 45)
                         .textFieldStyle(.roundedBorder)
@@ -52,16 +50,18 @@ struct InfoField: View {
                             print("\(pass)")
                         }
                 }   // VStack パスワード
-                HStack{
-                    // 都道府県
-                    InfoPicker()
-                    Spacer()
-                }
+                
+                // 都道府県
+                InfoPicker()
+            
+                // 起床時間
+                dataPicker()
+                
             }   // VStack ログインフォーム
             
             Button(action:{
                 SignupButton = true
-                print("名前:\(name), 年齢:\(age), 都道府県:\(prefectures), 起床時間:\(wakeupTime)")
+                print("名前:\(name), 年齢:\(age)")
             }){
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)

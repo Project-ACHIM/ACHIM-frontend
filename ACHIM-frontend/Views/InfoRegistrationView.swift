@@ -8,9 +8,22 @@ import SwiftUI
 
 struct InfoRegistrationView: View {
     var body: some View {
-        Text("InfoRegistrationView")
-    }
-}
+        ZStack {
+            VStack() {
+                Image(.achimLogo)
+                Spacer()
+            }
+            .padding(.top, 80)
+            VStack() {
+                Spacer()
+                FormBg()
+            }
+            InfoField()
+                .padding(.top, 120)
+        }   // ZStack
+        .ignoresSafeArea(.all)
+    }   // body
+}   // View
 
 #Preview {
     InfoRegistrationView()
