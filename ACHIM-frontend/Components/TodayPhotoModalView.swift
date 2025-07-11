@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TodayPhotoModalView: View {
-    @Environment(\.dismiss) var dismiss
+    var onClose: () -> Void
+//    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -53,7 +54,8 @@ struct TodayPhotoModalView: View {
                 
                 // 閉じるボタン
                 Button(action: {
-                    dismiss()
+                    onClose()
+//                    dismiss()
                 }) {
                     Text("閉じる")
                         .zenFont(.bold, size: 16,color: .white)
@@ -72,6 +74,6 @@ struct TodayPhotoModalView: View {
     }
 }
 
-#Preview{
-    TodayPhotoModalView()
-}
+//#Preview{
+//    TodayPhotoModalView()
+//}
