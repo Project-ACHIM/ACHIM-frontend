@@ -11,6 +11,7 @@ struct HomeHeaderSection: View {
     @Binding var remainingSeconds: Int
     let stepCount: Int
     @Binding var isMorningSession: Bool
+    @Binding var myStatusSymbol: String
     
     var body: some View {
         VStack(spacing: 0) {
@@ -23,7 +24,7 @@ struct HomeHeaderSection: View {
                 .padding(.bottom, 17)
             CountPointCardView()
                 .padding(.bottom, 17)
-            UserStatusCardView()
+            UserStatusCardView(myStatus: myStatusSymbol)
                 .padding(.bottom, 35)
         }
     }

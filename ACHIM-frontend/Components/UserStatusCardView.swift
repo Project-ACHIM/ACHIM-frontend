@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct UserStatusCardView: View {
+    var myStatus: String  // ← 自分の記号
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.baseSky)
             
             HStack(alignment: .center) {
-                // 左側：タイトル
+                // 左側：自分の状況
                 HStack {
                     Text("自分の参加状況")
-                        .zenFont(.medium, size: 20, color: .navy)
+                        .zenFont(.bold, size: 20, color: .navy)
                     
-                    Text("－")
-                        .zenFont(.regular, size: 20, color: .navy)
+                    Text(myStatus)  // ← 状態に応じて表示
+                        .zenFont(.bold, size: 20, color: .navy)
                 }
                 .frame(width: 180, alignment: .leading)
                 
@@ -28,7 +30,7 @@ struct UserStatusCardView: View {
                 Spacer()
                 Spacer()
                 
-                // 右側：ライバルリスト
+                // 右側：ライバル
                 VStack(alignment: .leading, spacing: 8) {
                     rivalRow(name: "ライバル１", symbol: "◯")
                     rivalRow(name: "ライバル２", symbol: "－")
@@ -58,6 +60,6 @@ struct UserStatusCardView: View {
     }
 }
 
-#Preview {
-    UserStatusCardView()
-}
+//#Preview {
+//    UserStatusCardView()
+//}
