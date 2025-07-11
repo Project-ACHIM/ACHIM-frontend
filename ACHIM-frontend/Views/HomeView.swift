@@ -4,6 +4,7 @@
 //
 //  Created by 上森拓翔 on 2025/06/02.
 //
+
 import SwiftUI
 import PhotosUI
 
@@ -56,10 +57,9 @@ struct HomeView: View {
                         .disabled(!countdownModel.isMorningSession)
                         .opacity(countdownModel.isMorningSession ? 1.0 : 0.5)
                         .padding(.bottom, 35)
-                        
                     } else {
                         HomeActionSection(
-                            startedMorningActivity: $startedMorningActivity, // ← 順番を定義通りに！
+                            startedMorningActivity: $startedMorningActivity,
                             photoPosted: $photoPosted,
                             selectedPhoto: $selectedPhoto,
                             selectedItem: $selectedItem,
@@ -95,6 +95,15 @@ struct HomeView: View {
                     }
                     .zIndex(101)
                 }
+                
+                // ✅ 修正①: NavigationLink の destination をラップしたViewに変更
+                NavigationLink(
+                    destination: VotingDestinationView(selectedPhoto: selectedPhoto),
+                    isActive: $isShowingVoting
+                ) {
+                    EmptyView()
+                }
+                .hidden()
             }
             .onChange(of: selectedItem) { _, newItem in
                 guard let item = newItem else { return }
@@ -113,22 +122,19 @@ struct HomeView: View {
                     checkIfAfter6PM()
                 }
             }
-            
-            
-            if let img = selectedPhoto {
-                NavigationLink(isActive: $isShowingVoting) {
-                    VotingView(photo: img)
-                } label: {
-                    EmptyView()
-                }
-                .hidden()
-            }
-            
         }
-        
     }
 }
 
-#Preview {
-    HomeView()
+// ✅ 修正②: VotingView を安全にラップするサブビューを追加
+struct VotingDestinationView: View {
+    let selectedPhoto: UIImage?
+    
+    var body: some View {
+        if let img = selectedPhoto {
+            VotingView(photo: img)
+        } else {
+            EmptyView()
+        }
+    }
 }
