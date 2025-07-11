@@ -87,9 +87,14 @@ struct HomeView: View {
                     }
                     .zIndex(100)
                 }
-            }
-            .sheet(isPresented: $showTodayPhotoModal) {
-                TodayPhotoModalView()
+                
+                if showTodayPhotoModal {
+                    Color.black.opacity(0.4).ignoresSafeArea().zIndex(100)
+                    TodayPhotoModalView {
+                        showTodayPhotoModal = false
+                    }
+                    .zIndex(101)
+                }
             }
             .onChange(of: selectedItem) { _, newItem in
                 guard let item = newItem else { return }
