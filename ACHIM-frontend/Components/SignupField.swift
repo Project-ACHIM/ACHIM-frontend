@@ -28,8 +28,8 @@ struct SignupField: View {
                         .frame(width: 300, height: 45)
                         .textFieldStyle(.roundedBorder)
                         .keyboardType(.emailAddress)    //キーボードの種類指定
-                        .onSubmit{
-                            print("\(email)")
+                        .onChange(of: email) { newValue in
+                            print("\(newValue)")
                         }
                 }   // VStack メールアドレス
                 
@@ -43,8 +43,8 @@ struct SignupField: View {
                         .frame(width: 300, height: 45)
                         .textFieldStyle(.roundedBorder)
                         .keyboardType(.asciiCapable)
-                        .onSubmit{
-                            print("\(pass)")
+                        .onChange(of: pass) { newValue in
+                            print("\(newValue)")
                         }
                 }   // VStack パスワード
                 //パスワード確認
@@ -57,8 +57,8 @@ struct SignupField: View {
                         .frame(width: 300, height: 45)
                         .textFieldStyle(.roundedBorder)
                         .keyboardType(.asciiCapable)
-                        .onSubmit{
-                            print("\(passConf)")
+                        .onChange(of: passConf) { newValue in
+                            print("\(newValue)")
                         }
                 }   // VStack パスワード
             }   // VStack ログインフォーム
@@ -72,19 +72,6 @@ struct SignupField: View {
             }
             .buttonStyle(.plain)
             
-            
-            Button(action:{
-                NextButton = true
-                print("email:\(email), pass:\(pass), pass確認:\(passConf)")
-            }){
-                ZStack {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.hex6CB0FF)
-                        .frame(width: 100, height: 40)
-                    Text("次へ")
-                        .zenFont(.bold, size: 14, color: .white)
-                }
-            }   // Button
         }   //VStack
         .frame(width: 300)
     }   // body

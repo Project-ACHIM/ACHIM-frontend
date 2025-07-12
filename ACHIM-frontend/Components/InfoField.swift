@@ -31,8 +31,8 @@ struct InfoField: View {
                         .frame(width: 300, height: 45)
                         .textFieldStyle(.roundedBorder)
                         .keyboardType(.emailAddress)    //キーボードの種類指定
-                        .onSubmit{
-                            print("\(email)")
+                        .onChange(of: name) { newValue in
+                            print("\(newValue)")
                         }
                 }   // VStack メールアドレス
                 
@@ -46,8 +46,8 @@ struct InfoField: View {
                         .frame(width: 300, height: 45)
                         .textFieldStyle(.roundedBorder)
                         .keyboardType(.numberPad)
-                        .onSubmit{
-                            print("\(pass)")
+                        .onChange(of: age) { newValue in
+                            print("\(newValue)")
                         }
                 }   // VStack パスワード
                 
@@ -58,19 +58,6 @@ struct InfoField: View {
                 dataPicker()
                 
             }   // VStack ログインフォーム
-            
-            Button(action:{
-                SignupButton = true
-                print("名前:\(name), 年齢:\(age)")
-            }){
-                ZStack {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.hex6CB0FF)
-                        .frame(width: 100, height: 40)
-                    Text("新規作成")
-                        .zenFont(.bold, size: 14, color: .white)
-                }
-            }
     }   //VStack
     .frame(width: 300)
     }
