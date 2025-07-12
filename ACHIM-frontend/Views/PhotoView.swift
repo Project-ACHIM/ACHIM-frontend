@@ -14,6 +14,7 @@ struct PhotoView: View {
     
     var body: some View {
         ZStack {
+            Color.white.ignoresSafeArea()
             VStack {
                 PhotosPicker(
                     selection: $selectedItem,
