@@ -16,12 +16,12 @@ struct RankingMyCard: View {
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 370, height: 85)
                 .foregroundStyle(Color.white)
-            // 角丸ボーダー
+                // 角丸ボーダー
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.navy, lineWidth: 1)
                 )
-            // シャドウ
+                // シャドウ
                 .shadow(color: Color.navy.opacity(0.4), radius: 4, y: 4)
 
             //カード内要素
@@ -49,7 +49,7 @@ struct RankingMyCard: View {
                         Image(.sp)  //SP img
                             .resizable()
                             .frame(width: 30, height: 30)
-                            .padding(.trailing, 55)
+                            .padding(.trailing, 70)
                         HStack{
                             Spacer()
                             //SP text

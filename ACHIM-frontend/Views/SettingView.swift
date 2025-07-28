@@ -11,7 +11,6 @@ struct SettingView: View {
         ZStack {
             Color.white.ignoresSafeArea()
             
-            Text("SettingView")
         }
     }
 }

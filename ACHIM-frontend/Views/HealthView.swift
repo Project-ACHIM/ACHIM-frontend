@@ -24,6 +24,8 @@ struct HealthView: View {
     
     var body: some View {
         VStack(spacing: 16) {
+            Color.white.ignoresSafeArea()
+
             // 日付表示
             HStack(alignment: .center) {
                 Image(systemName: "chevron.left")
