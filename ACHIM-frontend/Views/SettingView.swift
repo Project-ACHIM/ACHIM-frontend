@@ -37,13 +37,15 @@ struct SettingView: View {
                 .padding(.top, 60)
                 
                 HStack{
-                   Text("最優秀賞")
-                        .zenFont(.regular, size: 12)
-                        .padding(.leading, 16)
-                        .padding(.trailing, 16)
-                        .background(Color.hexFBBC04)
-                        .cornerRadius(10)
+                   SettingTitle(isTitle: "最優秀賞")
                 }   // HStack
+                .padding(.top, 20)
+                .padding(.bottom, 20)
+                
+                
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(Color(.hexB0B0B0))
+                    .frame(width: 320, height: 1)
                 Spacer()
             }
         }   //ZStack

@@ -68,8 +68,8 @@ struct   MondayGroupConf: View {
                         
                         //Line
                         RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(.hexB0B0B0))
                             .frame(width: 330, height: 1)
-                            .foregroundStyle(Color.gray)
                     }
                     
                     VStack(spacing: 0){
