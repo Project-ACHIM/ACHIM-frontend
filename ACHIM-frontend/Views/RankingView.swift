@@ -58,8 +58,6 @@ struct RankingView: View {
             }
             //ランキング
             VStack{
-                Spacer()
-    
                 VStack(alignment: .center,spacing: 20){
                     VStack(spacing: 16){
                         Button(action:{
@@ -74,7 +72,9 @@ struct RankingView: View {
                     
                     RankingRival()
                     .frame(width: 400, height: 450)
+                    Spacer()
                 }
+                .padding(.top, 100)
                 .frame(height: 600)
             }
         }

@@ -42,10 +42,15 @@ struct SettingView: View {
                 .padding(.top, 20)
                 .padding(.bottom, 20)
                 
-                
+                //線
                 RoundedRectangle(cornerRadius: 2)
                     .fill(Color(.hexB0B0B0))
                     .frame(width: 320, height: 1)
+                
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.hexE6F3FF)
+                    .frame(width: 350, height: 370)
+                    .padding(.top, 20)
                 Spacer()
             }
         }   //ZStack
